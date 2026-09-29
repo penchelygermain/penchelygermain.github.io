@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Remplacez VOTRE-SITE.github.io par votre adresse réelle (voir README, étape 4)
+Sitemap: https://VOTRE-SITE.github.io/sitemap.xml
