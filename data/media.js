@@ -1,0 +1,17 @@
+/* ==========================================================================
+   MÉDIATHÈQUE — photos, vidéos, affiches, certificats, événements
+   type     : "image" ou "video"
+   src      : chemin de l'image (pour une vidéo : miniature facultative)
+   youtube  : identifiant YouTube pour une vidéo (recommandé plutôt que
+              de déposer de gros fichiers vidéo sur GitHub)
+   category : agriculture, education, leadership, events, projects,
+              speaking, branding
+   ========================================================================== */
+PG.data.media = [
+  { id: "m1", type: "image", category: "agriculture", src: "assets/images/mediatheque/exemple-1.svg", alt: "Exemple — photo de terrain", caption: "Exemple — Visite de terrain (remplacez par votre photo)", placeholder: true },
+  { id: "m2", type: "image", category: "leadership",  src: "assets/images/mediatheque/exemple-2.svg", alt: "Exemple — réunion Toastmasters", caption: "Exemple — Réunion de club Toastmasters", placeholder: true },
+  { id: "m3", type: "image", category: "education",   src: "assets/images/mediatheque/exemple-3.svg", alt: "Exemple — session de formation", caption: "Exemple — Session de formation", placeholder: true },
+  { id: "m4", type: "video", category: "speaking",    src: "assets/images/mediatheque/exemple-4.svg", youtube: "", alt: "Exemple — discours", caption: "Exemple — Discours (ajoutez l'identifiant YouTube)", placeholder: true },
+  { id: "m5", type: "image", category: "events",      src: "assets/images/mediatheque/exemple-5.svg", alt: "Exemple — affiche d'événement", caption: "Exemple — Affiche d'événement", placeholder: true },
+  { id: "m6", type: "image", category: "projects",    src: "assets/images/mediatheque/exemple-6.svg", alt: "Exemple — projet", caption: "Exemple — Projet POLE GEO-HAGRI", placeholder: true }
+];

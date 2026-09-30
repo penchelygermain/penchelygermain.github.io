@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E7E1D3"/><stop offset="1" stop-color="#D5CDB9"/></linearGradient></defs>
+<rect width="400" height="500" fill="url(#g)"/><circle cx="200" cy="200" r="78" fill="#C6BBA2"/><path d="M60 500c10-110 70-170 140-170s130 60 140 170z" fill="#C6BBA2"/>
+<text x="200" y="70" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="15" fill="#6B6250">Votre photo professionnelle</text>
+<text x="200" y="92" text-anchor="middle" font-family="Inter, Arial, sans-serif" font-size="12" fill="#6B6250">assets/images/portrait.jpg</text></svg>
