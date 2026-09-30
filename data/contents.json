@@ -1,0 +1,55 @@
+{
+  "contents": [
+    {
+      "id": "exemple-video",
+      "title": "Exemple — Qu'est-ce que l'agroécologie ?",
+      "date": "2025-06-01",
+      "category": "Vidéos",
+      "image": "",
+      "description": "Exemple : collez l'identifiant YouTube de la vidéo dans le champ youtube.",
+      "link": "",
+      "youtube": "",
+      "pdf": "",
+      "author": "Penchely Germain",
+      "tags": [
+        "agroécologie",
+        "vulgarisation"
+      ],
+      "placeholder": true
+    },
+    {
+      "id": "exemple-infographie",
+      "title": "Exemple — Infographie : les 5 étapes du compostage",
+      "date": "2025-03-15",
+      "category": "Infographies",
+      "image": "",
+      "description": "Exemple : ajoutez l'image de l'infographie dans assets/images/ et indiquez son chemin.",
+      "link": "",
+      "youtube": "",
+      "pdf": "",
+      "author": "Penchely Germain",
+      "tags": [
+        "compostage",
+        "sols"
+      ],
+      "placeholder": true
+    },
+    {
+      "id": "exemple-presentation",
+      "title": "Exemple — Présentation : leadership et engagement",
+      "date": "2025-01-20",
+      "category": "Présentations",
+      "image": "",
+      "description": "Exemple : une présentation partagée (PDF léger ou lien Google Slides / SlideShare).",
+      "link": "",
+      "youtube": "",
+      "pdf": "",
+      "author": "Penchely Germain",
+      "tags": [
+        "leadership",
+        "Toastmasters"
+      ],
+      "placeholder": true
+    }
+  ]
+}

@@ -1,0 +1,1730 @@
+# Configuration de l’espace d’administration (Sveltia CMS).
+# Fichier généré : modifiez-le seulement si vous savez ce que vous faites.
+
+backend:
+  name: github
+  repo: penchelygermain/penchelygermain.github.io
+  branch: main
+  commit_messages:
+    create: 'Ajout : {{collection}} « {{slug}} »'
+    update: 'Mise à jour : {{collection}} « {{slug}} »'
+    delete: 'Suppression : {{collection}} « {{slug}} »'
+    uploadMedia: Envoi du fichier « {{path}} »
+    deleteMedia: Suppression du fichier « {{path}} »
+site_url: https://penchelygermain.github.io
+display_url: https://penchelygermain.github.io
+logo_url: /assets/icons/favicon.svg
+media_folder: assets/uploads
+public_folder: /assets/uploads
+collections:
+- name: reglages
+  format: json
+  label: ⚙️ Réglages
+  description: E-mail, photo, CV, réseaux sociaux, vidéo, formulaire de contact.
+  files:
+  - name: site
+    label: Réglages généraux
+    file: data/site.json
+    fields:
+    - name: name
+      label: Nom affiché
+      widget: string
+      required: true
+    - name: roles
+      label: Mes métiers (en haut de l’accueil)
+      widget: list
+      required: false
+      field:
+        name: item
+        label: Élément
+        widget: string
+    - name: tagline
+      label: Signature (sous le nom, pied de page)
+      widget: string
+      required: false
+    - name: email
+      label: E-mail public
+      widget: string
+      required: false
+    - name: location
+      label: Localisation (ville, pays — jamais l’adresse exacte)
+      widget: string
+      required: false
+    - name: photo
+      label: Photo professionnelle
+      widget: image
+      required: false
+      hint: Portrait vertical, idéalement 800 × 1000 px, moins de 300 Ko.
+    - name: photoAlt
+      label: Description de la photo (accessibilité)
+      widget: string
+      required: false
+    - name: cvPdf
+      label: CV (PDF)
+      widget: file
+      required: false
+    - name: mediaKitPdf
+      label: Media kit (PDF, facultatif)
+      widget: file
+      required: false
+    - name: featuredVideo
+      label: Vidéo de présentation (YouTube)
+      widget: string
+      required: false
+      hint: 'Identifiant YouTube seulement : pour https://www.youtube.com/watch?v=AbC123xyz, écrivez AbC123xyz.'
+    - name: geoHagriUrl
+      label: Adresse de POLE GEO-HAGRI
+      widget: string
+      required: false
+    - name: formEndpoint
+      label: Adresse du formulaire de contact (Formspree)
+      widget: string
+      required: false
+      hint: Ex. https://formspree.io/f/abcdwxyz
+    - name: socials
+      label: Réseaux sociaux (adresse complète, vide = masqué)
+      widget: object
+      required: false
+      fields:
+      - name: linkedin
+        label: LinkedIn
+        widget: string
+        required: false
+      - name: facebook
+        label: Facebook
+        widget: string
+        required: false
+      - name: instagram
+        label: Instagram
+        widget: string
+        required: false
+      - name: youtube
+        label: YouTube
+        widget: string
+        required: false
+      - name: tiktok
+        label: TikTok
+        widget: string
+        required: false
+      - name: x
+        label: X (Twitter)
+        widget: string
+        required: false
+      - name: researchgate
+        label: ResearchGate
+        widget: string
+        required: false
+      - name: scholar
+        label: Google Scholar
+        widget: string
+        required: false
+      - name: github
+        label: GitHub
+        widget: string
+        required: false
+    - name: showPlaceholders
+      label: Afficher les éléments « À COMPLÉTER »
+      widget: boolean
+      required: false
+      hint: 'Décochez quand le site est prêt à être présenté : les exemples et notes disparaissent.'
+      default: true
+    - name: showTestimonials
+      label: Afficher la section Témoignages
+      widget: boolean
+      required: false
+      default: true
+    - name: analytics
+      label: Statistiques de visite (facultatif)
+      widget: object
+      required: false
+      fields:
+      - name: provider
+        label: Service
+        widget: string
+        required: false
+        hint: goatcounter ou cloudflare (laisser vide = désactivé)
+      - name: code
+        label: Code GoatCounter
+        widget: string
+        required: false
+      - name: token
+        label: Jeton Cloudflare
+        widget: string
+        required: false
+      collapsed: true
+- name: contenus
+  format: json
+  label: 📚 Contenus
+  description: Projets, blog, formations, publications, médias, documents, parcours…
+  files:
+  - name: projects
+    label: Projets
+    file: data/projects.json
+    fields:
+    - name: projects
+      label: Projets
+      widget: list
+      required: false
+      fields:
+      - name: id
+        label: Identifiant
+        widget: string
+        required: true
+        hint: Identifiant unique, en minuscules, sans espace ni accent (ex. jardin-scolaire-2026).
+      - name: title
+        label: Titre
+        widget: string
+        required: true
+      - name: year
+        label: Année
+        widget: string
+        required: false
+      - name: category
+        label: Catégories
+        widget: select
+        required: false
+        options: &id002
+        - label: Agriculture
+          value: agriculture
+        - label: Environnement
+          value: environment
+        - label: Éducation
+          value: education
+        - label: Traduction
+          value: translation
+        - label: Leadership
+          value: leadership
+        - label: Communication
+          value: communication
+        - label: Numérique
+          value: digital
+        - label: Recherche
+          value: research
+        - label: Création de contenu
+          value: content
+        - label: Technologie
+          value: technology
+        - label: Événements
+          value: events
+        - label: Prise de parole
+          value: speaking
+        - label: Image professionnelle
+          value: branding
+        - label: Projets
+          value: projects
+        multiple: true
+      - name: featured
+        label: À la une (page d’accueil)
+        widget: boolean
+        required: false
+        default: false
+      - name: image
+        label: Image principale
+        widget: image
+        required: false
+      - name: summary
+        label: Résumé (une ou deux phrases)
+        widget: text
+        required: false
+      - name: description
+        label: Description / histoire du projet
+        widget: text
+        required: false
+      - name: objectives
+        label: Objectifs
+        widget: list
+        required: false
+        field:
+          name: item
+          label: Élément
+          widget: string
+      - name: role
+        label: Mon rôle
+        widget: text
+        required: false
+      - name: results
+        label: Résultats
+        widget: list
+        required: false
+        field:
+          name: item
+          label: Élément
+          widget: string
+      - name: tech
+        label: Outils & technologies
+        widget: list
+        required: false
+        field:
+          name: item
+          label: Élément
+          widget: string
+      - name: skills
+        label: Compétences mobilisées
+        widget: list
+        required: false
+        field:
+          name: item
+          label: Élément
+          widget: string
+      - name: link
+        label: Lien (site du projet, article…)
+        widget: string
+        required: false
+      - name: youtube
+        label: Vidéo YouTube
+        widget: string
+        required: false
+        hint: 'Identifiant YouTube seulement : pour https://www.youtube.com/watch?v=AbC123xyz, écrivez AbC123xyz.'
+      - name: gallery
+        label: Galerie photos
+        widget: list
+        required: false
+        fields:
+        - name: src
+          label: Image
+          widget: image
+          required: true
+        - name: alt
+          label: Description
+          widget: string
+          required: false
+        summary: '{{alt}}'
+      - name: documents
+        label: Documents (PDF…)
+        widget: list
+        required: false
+        fields:
+        - name: title
+          label: Titre
+          widget: string
+          required: true
+        - name: url
+          label: Fichier
+          widget: file
+          required: false
+        summary: '{{title}}'
+      - &id003
+        name: placeholder
+        label: Exemple à remplacer
+        widget: boolean
+        required: false
+        hint: Coché = entrée d’exemple (encadrée en pointillés, masquée quand le site est « prêt »).
+        default: false
+      - &id001
+        name: draft
+        label: Brouillon (masqué du site)
+        widget: boolean
+        required: false
+        default: false
+      summary: '{{year}} — {{title}}'
+  - name: posts
+    label: Blog — articles
+    file: data/posts.json
+    fields:
+    - name: posts
+      label: Articles
+      widget: list
+      required: false
+      fields:
+      - name: slug
+        label: Adresse de l’article
+        widget: string
+        required: true
+        hint: Minuscules, tirets, sans accent (ex. mon-premier-article). L’article sera à article.html?a=…
+      - name: title
+        label: Titre
+        widget: string
+        required: true
+      - name: date
+        label: Date
+        widget: string
+        required: false
+        hint: Format AAAA-MM-JJ, ex. 2026-10-15.
+      - name: category
+        label: Catégorie
+        widget: select
+        required: false
+        options:
+        - Agriculture
+        - Environnement
+        - Education
+        - Leadership
+        - Communication
+        - Translation
+        - Technology
+        multiple: false
+      - name: image
+        label: Image de couverture
+        widget: image
+        required: false
+      - name: summary
+        label: Résumé (affiché dans la liste)
+        widget: text
+        required: false
+      - name: tags
+        label: Mots-clés
+        widget: list
+        required: false
+        field:
+          name: item
+          label: Élément
+          widget: string
+      - name: body
+        label: Texte de l’article
+        widget: markdown
+        required: false
+        hint: Titres, gras, listes, liens et images. Collez un lien YouTube seul sur une ligne pour intégrer la vidéo.
+      - *id001
+      summary: '{{date}} — {{title}}'
+  - name: courses
+    label: Formations
+    file: data/courses.json
+    fields:
+    - name: courses
+      label: Formations
+      widget: list
+      required: false
+      fields:
+      - name: id
+        label: Identifiant
+        widget: string
+        required: true
+        hint: Identifiant unique, en minuscules, sans espace ni accent (ex. jardin-scolaire-2026).
+      - name: title
+        label: Titre
+        widget: string
+        required: true
+      - name: platform
+        label: Plateforme
+        widget: select
+        required: false
+        options:
+        - label: POLE GEO-HAGRI
+          value: geo-hagri
+        - label: Autre
+          value: autre
+        multiple: false
+      - name: category
+        label: Catégorie
+        widget: select
+        required: false
+        options: *id002
+        multiple: false
+      - name: description
+        label: Description
+        widget: text
+        required: false
+      - name: objectives
+        label: Objectifs
+        widget: list
+        required: false
+        field:
+          name: item
+          label: Élément
+          widget: string
+      - name: skills
+        label: Compétences
+        widget: list
+        required: false
+        field:
+          name: item
+          label: Élément
+          widget: string
+      - name: modules
+        label: Nombre de modules
+        widget: string
+        required: false
+      - name: lessons
+        label: Nombre de leçons
+        widget: string
+        required: false
+      - name: image
+        label: Image
+        widget: image
+        required: false
+      - name: youtube
+        label: Vidéo YouTube
+        widget: string
+        required: false
+        hint: 'Identifiant YouTube seulement : pour https://www.youtube.com/watch?v=AbC123xyz, écrivez AbC123xyz.'
+      - name: pdf
+        label: Support PDF
+        widget: file
+        required: false
+      - name: link
+        label: Lien vers la formation
+        widget: string
+        required: false
+      - *id003
+      - *id001
+      summary: '{{title}}'
+  - name: publications
+    label: Publications
+    file: data/publications.json
+    fields:
+    - name: publications
+      label: Publications
+      widget: list
+      required: false
+      fields:
+      - name: id
+        label: Identifiant
+        widget: string
+        required: true
+        hint: Identifiant unique, en minuscules, sans espace ni accent (ex. jardin-scolaire-2026).
+      - name: title
+        label: Titre
+        widget: string
+        required: true
+      - name: year
+        label: Année
+        widget: string
+        required: false
+      - name: type
+        label: Type
+        widget: select
+        required: false
+        options:
+        - Article
+        - Article scientifique
+        - Livre
+        - Chapitre
+        - Rapport
+        - Document pédagogique
+        - Blog
+        multiple: false
+      - name: authors
+        label: Auteurs
+        widget: string
+        required: false
+      - name: summary
+        label: Résumé
+        widget: text
+        required: false
+      - name: cover
+        label: Couverture
+        widget: image
+        required: false
+      - name: link
+        label: Lien de lecture
+        widget: string
+        required: false
+      - name: pdf
+        label: PDF
+        widget: file
+        required: false
+      - name: doi
+        label: DOI
+        widget: string
+        required: false
+        hint: Identifiant seul, ex. 10.1234/abcd.2025
+      - name: featured
+        label: À la une (page d’accueil)
+        widget: boolean
+        required: false
+        default: false
+      - *id003
+      - *id001
+      summary: '{{year}} — {{title}}'
+  - name: contents
+    label: Création de contenu
+    file: data/contents.json
+    fields:
+    - name: contents
+      label: Contenus
+      widget: list
+      required: false
+      fields:
+      - name: id
+        label: Identifiant
+        widget: string
+        required: true
+        hint: Identifiant unique, en minuscules, sans espace ni accent (ex. jardin-scolaire-2026).
+      - name: title
+        label: Titre
+        widget: string
+        required: true
+      - name: date
+        label: Date
+        widget: string
+        required: false
+        hint: Format AAAA-MM-JJ, ex. 2026-10-15.
+      - name: category
+        label: Catégorie
+        widget: select
+        required: false
+        options:
+        - Articles
+        - Vidéos
+        - Podcasts
+        - Formations
+        - Infographies
+        - Présentations
+        - Publications scientifiques
+        - Contenus éducatifs
+        - Agriculture
+        multiple: false
+      - name: image
+        label: Image / miniature
+        widget: image
+        required: false
+        hint: 'Facultatif pour une vidéo YouTube : la miniature est ajoutée automatiquement.'
+      - name: description
+        label: Description
+        widget: text
+        required: false
+      - name: link
+        label: Lien
+        widget: string
+        required: false
+      - name: youtube
+        label: Vidéo YouTube
+        widget: string
+        required: false
+        hint: 'Identifiant YouTube seulement : pour https://www.youtube.com/watch?v=AbC123xyz, écrivez AbC123xyz.'
+      - name: pdf
+        label: PDF
+        widget: file
+        required: false
+      - name: author
+        label: Auteur
+        widget: string
+        required: false
+      - name: tags
+        label: Mots-clés
+        widget: list
+        required: false
+        field:
+          name: item
+          label: Élément
+          widget: string
+      - *id003
+      - *id001
+      summary: '{{category}} — {{title}}'
+  - name: media
+    label: Médiathèque
+    file: data/media.json
+    fields:
+    - name: media
+      label: Photos et vidéos
+      widget: list
+      required: false
+      fields:
+      - name: id
+        label: Identifiant
+        widget: string
+        required: true
+        hint: Unique, ex. m7
+      - name: type
+        label: Type
+        widget: select
+        required: false
+        options:
+        - label: Photo
+          value: image
+        - label: Vidéo YouTube
+          value: video
+        multiple: false
+      - name: category
+        label: Catégorie
+        widget: select
+        required: false
+        options:
+        - label: Agriculture
+          value: agriculture
+        - label: Éducation
+          value: education
+        - label: Leadership
+          value: leadership
+        - label: Événements
+          value: events
+        - label: Prise de parole
+          value: speaking
+        - label: Image professionnelle
+          value: branding
+        - label: Projets
+          value: projects
+        multiple: false
+      - name: src
+        label: Image (ou miniature)
+        widget: image
+        required: false
+      - name: youtube
+        label: Vidéo YouTube
+        widget: string
+        required: false
+        hint: 'Identifiant YouTube seulement : pour https://www.youtube.com/watch?v=AbC123xyz, écrivez AbC123xyz.'
+      - name: alt
+        label: Description (accessibilité)
+        widget: string
+        required: false
+      - name: caption
+        label: Légende
+        widget: string
+        required: false
+      - *id003
+      - *id001
+      summary: '{{caption}}'
+  - name: documents
+    label: Documents
+    file: data/documents.json
+    fields:
+    - name: documents
+      label: Documents
+      widget: list
+      required: false
+      fields:
+      - name: id
+        label: Identifiant
+        widget: string
+        required: true
+        hint: Identifiant unique, en minuscules, sans espace ni accent (ex. jardin-scolaire-2026).
+      - name: title
+        label: Titre
+        widget: string
+        required: true
+      - name: description
+        label: Description
+        widget: text
+        required: false
+      - name: category
+        label: Catégorie
+        widget: string
+        required: false
+        hint: Ex. Profil, Formation, Agronomie…
+      - name: date
+        label: Date
+        widget: string
+        required: false
+        hint: AAAA-MM
+      - name: format
+        label: Format
+        widget: select
+        required: false
+        options:
+        - PDF
+        - DOCX
+        - PPTX
+        - XLSX
+        - IMG
+        - ZIP
+        multiple: false
+      - name: url
+        label: Fichier
+        widget: file
+        required: false
+        hint: Ou collez un lien externe (Google Drive, Zenodo…) pour les fichiers de plus de 10 Mo.
+      - name: public
+        label: Public
+        widget: boolean
+        required: false
+        hint: Décoché = jamais affiché sur le site.
+        default: true
+      - *id003
+      - *id001
+      summary: '{{title}}'
+  - name: career
+    label: Parcours & diplômes
+    file: data/career.json
+    fields:
+    - name: experiences
+      label: Expériences (la plus récente en haut)
+      widget: list
+      required: false
+      fields:
+      - name: org
+        label: Organisation
+        widget: string
+        required: true
+      - name: role
+        label: Poste
+        widget: string
+        required: true
+      - name: place
+        label: Lieu
+        widget: string
+        required: false
+      - name: period
+        label: Période
+        widget: string
+        required: false
+        hint: Ex. 2024 – 2025
+      - name: current
+        label: Poste actuel
+        widget: boolean
+        required: false
+        default: false
+      - name: pillar
+        label: Pilier associé
+        widget: select
+        required: false
+        options:
+        - label: Agronomie
+          value: agronomie
+        - label: Formation
+          value: formation
+        - label: Traduction
+          value: traduction
+        - label: Leadership
+          value: leadership
+        - label: Création de contenu
+          value: contenu
+        multiple: false
+      - name: description
+        label: Description
+        widget: text
+        required: false
+      - name: responsibilities
+        label: Responsabilités
+        widget: list
+        required: false
+        field:
+          name: item
+          label: Élément
+          widget: string
+      - name: skills
+        label: Compétences développées
+        widget: list
+        required: false
+        field:
+          name: item
+          label: Élément
+          widget: string
+      - name: achievements
+        label: Réalisations
+        widget: list
+        required: false
+        field:
+          name: item
+          label: Élément
+          widget: string
+      - *id003
+      - *id001
+      summary: '{{period}} — {{role}}'
+    - name: education
+      label: Diplômes, certifications et formations
+      widget: list
+      required: false
+      fields:
+      - name: type
+        label: Type
+        widget: select
+        required: false
+        options:
+        - Diplôme
+        - Certification
+        - Formation courte
+        - Toastmasters
+        - Distinction
+        multiple: false
+      - name: title
+        label: Intitulé
+        widget: string
+        required: true
+      - name: institution
+        label: Établissement / organisme
+        widget: string
+        required: false
+      - name: year
+        label: Année
+        widget: string
+        required: false
+      - name: description
+        label: Description
+        widget: text
+        required: false
+      - name: pdf
+        label: Certificat (PDF, facultatif)
+        widget: file
+        required: false
+      - name: url
+        label: Lien
+        widget: string
+        required: false
+      - *id003
+      - *id001
+      summary: '{{year}} — {{title}}'
+  - name: skills
+    label: Compétences, langues & outils
+    file: data/skills.json
+    fields:
+    - name: groups
+      label: Groupes de compétences
+      widget: list
+      required: false
+      fields:
+      - name: group
+        label: Nom du groupe
+        widget: string
+        required: true
+      - name: items
+        label: Compétences
+        widget: list
+        required: false
+        fields:
+        - name: name
+          label: Compétence
+          widget: string
+          required: true
+        - name: level
+          label: Niveau
+          widget: number
+          required: false
+          hint: 1 = Débutant, 2 = Intermédiaire, 3 = Avancé, 4 = Expert
+          value_type: int
+          min: 1
+          max: 4
+          default: 3
+        - name: text
+          label: Précision
+          widget: string
+          required: false
+        summary: '{{name}}'
+      summary: '{{group}}'
+    - name: languages
+      label: Langues
+      widget: list
+      required: false
+      fields:
+      - name: name
+        label: Langue
+        widget: string
+        required: true
+      - name: level
+        label: Niveau
+        widget: string
+        required: false
+        hint: Ex. Langue maternelle, Courant, Intermédiaire…
+      summary: '{{name}} — {{level}}'
+    - name: tools
+      label: Outils numériques
+      widget: list
+      required: false
+      field:
+        name: item
+        label: Élément
+        widget: string
+  - name: services
+    label: Services
+    file: data/services.json
+    fields:
+    - name: services
+      label: Services
+      widget: list
+      required: false
+      fields:
+      - name: id
+        label: Identifiant
+        widget: string
+        required: true
+        hint: Identifiant unique, en minuscules, sans espace ni accent (ex. jardin-scolaire-2026).
+      - name: title
+        label: Titre
+        widget: string
+        required: true
+      - name: icon
+        label: Icône
+        widget: select
+        required: false
+        options: &id004
+        - leaf
+        - cap
+        - languages
+        - mic
+        - play
+        - book
+        - briefcase
+        - target
+        - globe
+        - users
+        - pen
+        - award
+        - compass
+        - sprout
+        multiple: false
+      - name: tint
+        label: Couleur
+        widget: select
+        required: false
+        options: &id005
+        - label: Vert (agronomie)
+          value: var(--p1)
+        - label: Bleu (formation)
+          value: var(--p2)
+        - label: Indigo (traduction)
+          value: var(--p3)
+        - label: Terre cuite (leadership)
+          value: var(--p4)
+        - label: Ocre (contenu)
+          value: var(--p5)
+        - label: Vert principal
+          value: var(--primary)
+        multiple: false
+      - name: description
+        label: Description
+        widget: text
+        required: false
+      - name: audience
+        label: Public cible
+        widget: string
+        required: false
+      - name: deliverables
+        label: Livrables
+        widget: list
+        required: false
+        field:
+          name: item
+          label: Élément
+          widget: string
+      summary: '{{title}}'
+  - name: highlights
+    label: Chiffres clés, témoignages, Toastmasters, traduction
+    file: data/highlights.json
+    fields:
+    - name: achievements
+      label: Chiffres clés (accueil)
+      widget: list
+      required: false
+      fields:
+      - name: value
+        label: Chiffre
+        widget: string
+        required: false
+        hint: Ex. 250+
+      - name: label
+        label: Intitulé
+        widget: string
+        required: false
+      - name: text
+        label: Précision
+        widget: string
+        required: false
+      - *id003
+      summary: '{{value}} {{label}}'
+    - name: testimonials
+      label: Témoignages (avec l’accord des personnes)
+      widget: list
+      required: false
+      fields:
+      - name: quote
+        label: Témoignage
+        widget: text
+        required: true
+      - name: name
+        label: Nom
+        widget: string
+        required: false
+      - name: role
+        label: Fonction
+        widget: string
+        required: false
+      - name: org
+        label: Organisation
+        widget: string
+        required: false
+      - name: photo
+        label: Photo
+        widget: image
+        required: false
+      - *id003
+      summary: '{{name}}'
+    - name: leadership
+      label: Leadership (page Communication & Leadership)
+      widget: object
+      required: false
+      fields:
+      - name: timeline
+        label: Parcours Toastmasters
+        widget: list
+        required: false
+        fields:
+        - name: year
+          label: Année(s)
+          widget: string
+          required: false
+        - name: title
+          label: Rôle
+          widget: string
+          required: false
+        - name: text
+          label: Description
+          widget: string
+          required: false
+        - name: current
+          label: Rôle actuel
+          widget: boolean
+          required: false
+          default: false
+        summary: '{{year}} — {{title}}'
+      - name: philosophy
+        label: Ma philosophie du leadership (citation)
+        widget: text
+        required: false
+      - name: philosophyIsPlaceholder
+        label: Citation à personnaliser (encadrée)
+        widget: boolean
+        required: false
+        default: false
+    - name: translation
+      label: Traduction (page Traducteur)
+      widget: object
+      required: false
+      fields:
+      - name: pairs
+        label: Langues de travail
+        widget: list
+        required: false
+        fields:
+        - name: from
+          label: De
+          widget: string
+          required: false
+        - name: to
+          label: Vers
+          widget: string
+          required: false
+        - *id003
+        summary: '{{from}} → {{to}}'
+      - name: samples
+        label: Exemples de projets de traduction
+        widget: list
+        required: false
+        fields:
+        - name: title
+          label: Titre
+          widget: string
+          required: false
+        - name: type
+          label: Type de document
+          widget: string
+          required: false
+        - name: pair
+          label: Langues
+          widget: string
+          required: false
+        - name: confidential
+          label: Confidentiel (aucun détail affiché)
+          widget: boolean
+          required: false
+          default: true
+        - name: image
+          label: Image anonymisée
+          widget: image
+          required: false
+        - name: note
+          label: Note
+          widget: string
+          required: false
+        summary: '{{title}}'
+- name: textes
+  format: json
+  label: ✏️ Textes des pages
+  description: Titres, biographie et textes fixes de chaque page.
+  files:
+  - name: commun
+    label: Éléments communs à toutes les pages
+    file: data/pages/commun.json
+    fields:
+    - name: cta_titre
+      label: Bandeau « Travaillons ensemble » — titre
+      widget: string
+      required: false
+    - name: cta_texte
+      label: Bandeau « Travaillons ensemble » — texte
+      widget: text
+      required: false
+  - name: home
+    label: Accueil
+    file: data/pages/home.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: accroche
+      label: Phrase d’accroche (mettez un mot entre *astérisques* pour le colorer)
+      widget: string
+      required: false
+    - name: intro
+      label: Texte de présentation
+      widget: text
+      required: false
+    - name: badge_titre
+      label: Pastille sur la photo — titre
+      widget: string
+      required: false
+    - name: badge_texte
+      label: Pastille sur la photo — texte
+      widget: string
+      required: false
+    - name: piliers_titre
+      label: Section piliers — titre
+      widget: string
+      required: false
+    - name: piliers_intro
+      label: Section piliers — texte
+      widget: text
+      required: false
+    - name: impact
+      label: Bandeau IMPACT — texte
+      widget: text
+      required: false
+    - name: geo_slogan
+      label: Bloc POLE GEO-HAGRI — slogan
+      widget: string
+      required: false
+    - name: geo_texte
+      label: Bloc POLE GEO-HAGRI — texte
+      widget: text
+      required: false
+    - name: qui_suis_je
+      label: En bref — réponse à « Qui suis-je ? »
+      widget: text
+      required: false
+    - name: que_puis_je
+      label: En bref — réponse à « Que puis-je faire ? »
+      widget: text
+      required: false
+    - name: quel_impact
+      label: En bref — réponse à « Quel impact ? »
+      widget: string
+      required: false
+  - name: about
+    label: À propos
+    file: data/pages/about.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: hero_titre
+      label: Titre principal de la page
+      widget: string
+      required: false
+    - name: hero_intro
+      label: Texte d’introduction (sous le titre)
+      widget: text
+      required: false
+    - name: bio_titre
+      label: Biographie — titre
+      widget: string
+      required: false
+    - name: bio_intro
+      label: Biographie — phrase d’introduction (en grand)
+      widget: text
+      required: false
+    - name: bio_resume
+      label: Biographie — résumé (toujours visible)
+      widget: markdown
+      required: false
+    - name: bio_complete
+      label: Biographie — suite (affichée avec « Lire la suite »)
+      widget: markdown
+      required: false
+    - name: mission
+      label: Ma mission
+      widget: text
+      required: false
+    - name: philosophie
+      label: Ma philosophie professionnelle
+      widget: text
+      required: false
+    - name: valeurs
+      label: Mes valeurs (une par ligne)
+      widget: list
+      required: false
+      field:
+        name: item
+        label: Élément
+        widget: string
+    - name: affiliations
+      label: Affiliations professionnelles
+      widget: list
+      required: false
+      field:
+        name: item
+        label: Élément
+        widget: string
+  - name: journey
+    label: Mon parcours
+    file: data/pages/journey.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: hero_titre
+      label: Titre principal de la page
+      widget: string
+      required: false
+    - name: hero_intro
+      label: Texte d’introduction (sous le titre)
+      widget: text
+      required: false
+  - name: agronomie
+    label: Pilier 1 · Agronomie
+    file: data/pages/agronomie.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: hero_titre
+      label: Titre principal de la page
+      widget: string
+      required: false
+    - name: hero_intro
+      label: Texte d’introduction (sous le titre)
+      widget: text
+      required: false
+    - name: formation_titre
+      label: Formation académique — titre
+      widget: string
+      required: false
+    - name: formation_texte
+      label: Formation académique — texte (diplôme, université, année…)
+      widget: markdown
+      required: false
+    - name: citation
+      label: Citation
+      widget: text
+      required: false
+  - name: formation
+    label: Pilier 2 · Formation
+    file: data/pages/formation.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: hero_titre
+      label: Titre principal de la page
+      widget: string
+      required: false
+    - name: hero_intro
+      label: Texte d’introduction (sous le titre)
+      widget: text
+      required: false
+  - name: geo-hagri
+    label: POLE GEO-HAGRI
+    file: data/pages/geo-hagri.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: hero_titre
+      label: Titre principal
+      widget: string
+      required: false
+    - name: slogan
+      label: Slogan
+      widget: string
+      required: false
+    - name: hero_intro
+      label: Texte d’introduction
+      widget: text
+      required: false
+    - name: mission_titre
+      label: Mission — titre
+      widget: string
+      required: false
+    - name: mission
+      label: Mission — texte (chiffres, date de lancement, partenaires…)
+      widget: markdown
+      required: false
+  - name: traduction
+    label: Pilier 3 · Traduction
+    file: data/pages/traduction.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: hero_titre
+      label: Titre principal de la page
+      widget: string
+      required: false
+    - name: hero_intro
+      label: Texte d’introduction (sous le titre)
+      widget: text
+      required: false
+    - name: confidentialite
+      label: Engagement de confidentialité
+      widget: text
+      required: false
+  - name: leadership
+    label: Pilier 4 · Communication & Leadership
+    file: data/pages/leadership.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: hero_titre
+      label: Titre principal de la page
+      widget: string
+      required: false
+    - name: hero_intro
+      label: Texte d’introduction (sous le titre)
+      widget: text
+      required: false
+    - name: toastmasters_titre
+      label: Toastmasters — titre
+      widget: string
+      required: false
+    - name: toastmasters_texte
+      label: Toastmasters — texte (club, district, distinctions…)
+      widget: markdown
+      required: false
+  - name: content
+    label: Pilier 5 · Création de contenu
+    file: data/pages/content.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: hero_titre
+      label: Titre principal de la page
+      widget: string
+      required: false
+    - name: hero_intro
+      label: Texte d’introduction (sous le titre)
+      widget: text
+      required: false
+  - name: projects
+    label: Projets
+    file: data/pages/projects.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: hero_titre
+      label: Titre principal de la page
+      widget: string
+      required: false
+    - name: hero_intro
+      label: Texte d’introduction (sous le titre)
+      widget: text
+      required: false
+  - name: publications
+    label: Publications
+    file: data/pages/publications.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: hero_titre
+      label: Titre principal de la page
+      widget: string
+      required: false
+    - name: hero_intro
+      label: Texte d’introduction (sous le titre)
+      widget: text
+      required: false
+  - name: media
+    label: Médiathèque
+    file: data/pages/media.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: hero_titre
+      label: Titre principal de la page
+      widget: string
+      required: false
+    - name: hero_intro
+      label: Texte d’introduction (sous le titre)
+      widget: text
+      required: false
+  - name: documents
+    label: Documents
+    file: data/pages/documents.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: hero_titre
+      label: Titre principal de la page
+      widget: string
+      required: false
+    - name: hero_intro
+      label: Texte d’introduction (sous le titre)
+      widget: text
+      required: false
+  - name: blog
+    label: Blog
+    file: data/pages/blog.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: hero_titre
+      label: Titre principal de la page
+      widget: string
+      required: false
+    - name: hero_intro
+      label: Texte d’introduction (sous le titre)
+      widget: text
+      required: false
+  - name: services
+    label: Services
+    file: data/pages/services.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: hero_titre
+      label: Titre principal de la page
+      widget: string
+      required: false
+    - name: hero_intro
+      label: Texte d’introduction (sous le titre)
+      widget: text
+      required: false
+  - name: contact
+    label: Contact
+    file: data/pages/contact.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: hero_titre
+      label: Titre principal de la page
+      widget: string
+      required: false
+    - name: hero_intro
+      label: Texte d’introduction (sous le titre)
+      widget: text
+      required: false
+    - name: disponibilite
+      label: Disponibilité
+      widget: text
+      required: false
+  - name: cv
+    label: CV en ligne
+    file: data/pages/cv.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: profil
+      label: Profil (résumé en haut du CV)
+      widget: markdown
+      required: false
+  - name: mediakit
+    label: Media kit
+    file: data/pages/mediakit.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: hero_titre
+      label: Titre principal de la page
+      widget: string
+      required: false
+    - name: hero_intro
+      label: Texte d’introduction (sous le titre)
+      widget: text
+      required: false
+    - name: bio_courte
+      label: Biographie courte (≈ 50 mots)
+      widget: text
+      required: false
+    - name: titre_officiel
+      label: Titre officiel à utiliser
+      widget: text
+      required: false
+  - name: legal
+    label: Mentions légales
+    file: data/pages/legal.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: texte
+      label: Mentions légales — texte complet
+      widget: markdown
+      required: false
+  - name: privacy
+    label: Confidentialité
+    file: data/pages/privacy.json
+    fields:
+    - name: seo_titre
+      label: Titre de l’onglet et de Google
+      widget: string
+      required: false
+    - name: seo_description
+      label: Description pour Google et les réseaux sociaux
+      widget: text
+      required: false
+    - name: texte
+      label: Politique de confidentialité — texte complet
+      widget: markdown
+      required: false
+- name: structure
+  format: json
+  label: 🧩 Structure
+  description: Piliers et catégories — à modifier avec précaution.
+  files:
+  - name: pillars
+    label: Les 5 piliers & catégories
+    file: data/pillars.json
+    fields:
+    - name: pillars
+      label: Piliers
+      widget: list
+      required: false
+      fields:
+      - name: id
+        label: Identifiant (ne pas modifier)
+        widget: string
+        required: false
+      - name: 'no'
+        label: Numéro
+        widget: string
+        required: false
+      - name: icon
+        label: Icône
+        widget: select
+        required: false
+        options: *id004
+        multiple: false
+      - name: tint
+        label: Couleur
+        widget: select
+        required: false
+        options: *id005
+        multiple: false
+      - name: category
+        label: Catégorie des projets liés
+        widget: select
+        required: false
+        options: *id002
+        multiple: false
+      - name: title
+        label: Titre
+        widget: string
+        required: true
+      - name: page
+        label: Page (ne pas modifier)
+        widget: string
+        required: false
+      - name: role
+        label: Rôle en une ligne
+        widget: string
+        required: false
+      - name: text
+        label: Description
+        widget: text
+        required: false
+      - name: skills
+        label: Mots-clés
+        widget: list
+        required: false
+        field:
+          name: item
+          label: Élément
+          widget: string
+      summary: '{{no}} — {{title}}'
+    - name: categories
+      label: Catégories (filtres)
+      widget: list
+      required: false
+      fields:
+      - name: key
+        label: Code (sans accent ni espace)
+        widget: string
+        required: true
+      - name: label
+        label: Libellé affiché
+        widget: string
+        required: true
+      summary: '{{label}}'

@@ -1,0 +1,135 @@
+{
+  "projects": [
+    {
+      "id": "pole-geo-hagri",
+      "title": "POLE GEO-HAGRI",
+      "year": "2025",
+      "category": [
+        "agriculture",
+        "education",
+        "digital",
+        "content"
+      ],
+      "featured": true,
+      "image": "assets/images/projets/geo-hagri.svg",
+      "summary": "Plateforme gratuite de formation en agriculture durable : « Semer le savoir, pour une agriculture durable. »",
+      "description": "POLE GEO-HAGRI réunit agronomie, pédagogie, technologie et création de contenu dans une plateforme d'apprentissage libre d'accès, pensée pour Haïti et au-delà.",
+      "objectives": [
+        "Rendre la formation agricole de qualité accessible gratuitement",
+        "Diffuser les pratiques d'agriculture durable et d'agroécologie",
+        "Introduire les outils numériques et géospatiaux en agriculture"
+      ],
+      "role": "Fondateur, concepteur pédagogique et créateur des contenus.",
+      "results": [
+        "À COMPLÉTER : nombre d'apprenants, de formations publiées, de pays touchés…"
+      ],
+      "tech": [
+        "Plateforme e-learning",
+        "Vidéo",
+        "Télédétection",
+        "SIG"
+      ],
+      "skills": [
+        "Conception pédagogique",
+        "Agriculture durable",
+        "Création de contenu"
+      ],
+      "link": "https://polegeohagri.com",
+      "youtube": "",
+      "gallery": [],
+      "documents": []
+    },
+    {
+      "id": "exemple-agroecologie",
+      "title": "Exemple — Étude agroécologique d'un bassin versant",
+      "year": "2024",
+      "category": [
+        "agriculture",
+        "research"
+      ],
+      "featured": true,
+      "image": "assets/images/projets/placeholder-agri.svg",
+      "summary": "Exemple d'entrée à remplacer : décrivez ici un projet de terrain ou de recherche en agronomie.",
+      "description": "Remplacez ce texte par l'histoire de votre projet : contexte, problème, démarche, résultats.",
+      "objectives": [
+        "Objectif 1",
+        "Objectif 2"
+      ],
+      "role": "Votre rôle dans le projet.",
+      "results": [
+        "Résultat mesurable 1",
+        "Résultat mesurable 2"
+      ],
+      "tech": [
+        "QGIS",
+        "Télédétection"
+      ],
+      "skills": [
+        "Analyse de sols",
+        "Cartographie"
+      ],
+      "link": "",
+      "youtube": "",
+      "gallery": [],
+      "documents": [],
+      "placeholder": true
+    },
+    {
+      "id": "exemple-leadership",
+      "title": "Exemple — Organisation d'un concours de discours",
+      "year": "2025",
+      "category": [
+        "leadership",
+        "communication"
+      ],
+      "featured": true,
+      "image": "assets/images/projets/placeholder-leadership.svg",
+      "summary": "Exemple d'entrée à remplacer : un événement Toastmasters que vous avez piloté.",
+      "description": "Remplacez ce texte par la description de l'événement, votre équipe, les participants et l'impact.",
+      "objectives": [
+        "Objectif 1"
+      ],
+      "role": "Votre rôle.",
+      "results": [
+        "Résultat 1"
+      ],
+      "tech": [],
+      "skills": [
+        "Event Planning",
+        "Gestion d'équipe"
+      ],
+      "link": "",
+      "youtube": "",
+      "gallery": [],
+      "documents": [],
+      "placeholder": true
+    },
+    {
+      "id": "exemple-traduction",
+      "title": "Exemple — Traduction d'un corpus académique",
+      "year": "2024",
+      "category": [
+        "translation"
+      ],
+      "featured": false,
+      "image": "assets/images/projets/placeholder-translation.svg",
+      "summary": "Exemple d'entrée à remplacer : un projet de traduction (anonymisé si nécessaire).",
+      "description": "Projet confidentiel — détails disponibles sur demande.",
+      "objectives": [],
+      "role": "Traducteur et réviseur.",
+      "results": [],
+      "tech": [
+        "Outils de TAO"
+      ],
+      "skills": [
+        "Traduction",
+        "Révision"
+      ],
+      "link": "",
+      "youtube": "",
+      "gallery": [],
+      "documents": [],
+      "placeholder": true
+    }
+  ]
+}

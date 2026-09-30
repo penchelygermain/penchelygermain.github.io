@@ -1,0 +1,38 @@
+{
+  "name": "Penchely Germain",
+  "roles": [
+    "Agronome",
+    "Formateur",
+    "Traducteur",
+    "Communicateur & Leader",
+    "Créateur de contenu"
+  ],
+  "tagline": "Agronomy, Education, Communication & Digital Impact",
+  "email": "penchely.germain@gmail.com",
+  "location": "Haïti",
+  "photo": "assets/images/portrait.svg",
+  "photoAlt": "Portrait professionnel de Penchely Germain",
+  "cvPdf": "assets/documents/CV-Penchely-Germain.pdf",
+  "mediaKitPdf": "",
+  "featuredVideo": "",
+  "geoHagriUrl": "https://polegeohagri.com",
+  "formEndpoint": "https://formspree.io/f/VOTRE_ID_FORMSPREE",
+  "socials": {
+    "linkedin": "",
+    "facebook": "",
+    "instagram": "",
+    "youtube": "",
+    "tiktok": "",
+    "x": "",
+    "researchgate": "",
+    "scholar": "",
+    "github": ""
+  },
+  "showPlaceholders": true,
+  "showTestimonials": true,
+  "analytics": {
+    "provider": "",
+    "code": "",
+    "token": ""
+  }
+}

@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin/
 
 # Adresse du site
 Sitemap: https://penchelygermain.github.io/sitemap.xml

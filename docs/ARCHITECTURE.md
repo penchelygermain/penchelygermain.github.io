@@ -233,3 +233,11 @@ Pied de page : piliers, liens, réseaux, © 2026, mentions légales, confidentia
 3. **Mois 1 :** vidéo de présentation, Google Search Console, lien du site sur LinkedIn et dans la signature e-mail.
 4. **Trimestre 1 :** un article de blog par mois, médiathèque d'événements, version anglaise.
 5. **Plus tard :** domaine personnalisé, newsletter, version créole, media kit PDF.
+
+---
+
+## Évolution : espace d'administration (septembre 2026)
+
+- Les contenus sont désormais des fichiers **JSON** (`data/*.json`) et les textes des pages sont dans `data/pages/<page>.json`.
+- `assets/js/boot.js` charge ces fichiers puis lance `assets/js/app.js`. Les éléments HTML portant `data-text="page.champ"` sont remplis avec les textes modifiés (le texte d'origine reste dans le HTML pour Google et en l'absence de JavaScript).
+- L'administration **Sveltia CMS** (`/admin`) écrit directement dans le dépôt GitHub (connexion par clé d'accès personnelle, aucun serveur nécessaire). Chaque enregistrement crée un commit et déclenche la republication de GitHub Pages.

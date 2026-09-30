@@ -322,6 +322,11 @@
   var matches = function (obj, q) { return !q || JSON.stringify(obj).toLowerCase().indexOf(q) > -1; };
   var emptyBox = function (msg) { return '<div class="empty">' + esc(msg || t("ui.empty")) + "</div>"; };
 
+  /* ---- Métiers affichés en haut de l'accueil (Réglages → Mes métiers) ---- */
+  R.roles = function (el) {
+    if (list(S.roles).length) el.innerHTML = list(S.roles).map(function (r) { return "<li>" + esc(r) + "</li>"; }).join("");
+  };
+
   /* ---- Piliers ---- */
   R.pillars = function (el) {
     el.innerHTML = (D.pillars || []).map(function (p) {
@@ -511,20 +516,32 @@
   };
 
   // Mini-convertisseur Markdown (titres, listes, citations, gras, italique, liens, images)
+  // Texte en ligne : **gras**, *italique*, [lien](url), ![image](url)
+  function mdInline(s) {
+    var keep = [];
+    // Caractères échappés par l'éditeur (\* \_ \# …) : protégés puis restitués
+    s = String(s == null ? "" : s).replace(/\\([\\`*_{}\[\]()#+\-.!>|~])/g, function (_, c) { keep.push(c); return "\u0000" + (keep.length - 1) + "\u0000"; });
+    return esc(s)
+      .replace(/!\[([^\]]*)\]\(([^)\s]+)(?:\s+&quot;[^&]*&quot;)?\)/g, function (_, a, u) { return '<img src="' + url(u) + '" alt="' + a + '" loading="lazy">'; })
+      .replace(/\[([^\]]+)\]\(([^)\s]+)(?:\s+&quot;[^&]*&quot;)?\)/g, function (_, a, u) { return '<a href="' + url(u) + '"' + ext(u) + ">" + a + "</a>"; })
+      .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+      .replace(/__([^_]+)__/g, "<strong>$1</strong>")
+      .replace(/\*([^*]+)\*/g, "<em>$1</em>")
+      .replace(/(^|[\s(>])_([^_]+)_(?=[\s).,;:!?<]|$)/g, "$1<em>$2</em>")
+      .replace(/\u0000(\d+)\u0000/g, function (_, i) { return esc(keep[+i]); });
+  }
+  PG.mdInline = mdInline;
   function md(src) {
-    var inline = function (s) {
-      return esc(s)
-        .replace(/!\[([^\]]*)\]\(([^)\s]+)\)/g, function (_, a, u) { return '<img src="' + url(u) + '" alt="' + a + '" loading="lazy">'; })
-        .replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, function (_, a, u) { return '<a href="' + url(u) + '"' + ext(u) + ">" + a + "</a>"; })
-        .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
-        .replace(/\*([^*]+)\*/g, "<em>$1</em>");
-    };
-    return String(src || "").trim().split(/\n\s*\n/).map(function (block) {
+    var inline = mdInline;
+    return String(src || "").replace(/\r\n/g, "\n").trim().split(/\n\s*\n/).map(function (block) {
       var b = block.trim();
+      var yt = b.match(/^https?:\/\/(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([\w-]{6,})\S*$/);
+      if (yt) return ytEmbed(yt[1]);
+      if (/^####\s/.test(b)) return "<h4>" + inline(b.replace(/^####\s/, "")) + "</h4>";
       if (/^###\s/.test(b)) return "<h3>" + inline(b.replace(/^###\s/, "")) + "</h3>";
-      if (/^##\s/.test(b)) return "<h2>" + inline(b.replace(/^##\s/, "")) + "</h2>";
+      if (/^#{1,2}\s/.test(b)) return "<h2>" + inline(b.replace(/^#{1,2}\s/, "")) + "</h2>";
       if (/^>\s?/.test(b)) return "<blockquote>" + inline(b.replace(/^>\s?/gm, "")) + "</blockquote>";
-      if (/^[-*]\s/.test(b)) return "<ul>" + b.split(/\n/).map(function (l) { return "<li>" + inline(l.replace(/^[-*]\s/, "")) + "</li>"; }).join("") + "</ul>";
+      if (/^[-*+]\s/.test(b)) return "<ul>" + b.split(/\n/).map(function (l) { return "<li>" + inline(l.replace(/^\s*[-*+]\s/, "")) + "</li>"; }).join("") + "</ul>";
       if (/^\d+\.\s/.test(b)) return "<ol>" + b.split(/\n/).map(function (l) { return "<li>" + inline(l.replace(/^\d+\.\s/, "")) + "</li>"; }).join("") + "</ol>";
       if (/^!\[/.test(b)) return inline(b);
       return "<p>" + inline(b).replace(/\n/g, "<br>") + "</p>";
@@ -915,7 +932,34 @@
   /* ------------------------------------------------------------------
      10. Démarrage
      ------------------------------------------------------------------ */
+  /* Textes des pages modifiables depuis /admin (data/pages/*.json).
+     <p data-text="home.hero_intro">texte par défaut</p>
+     data-md="block" : paragraphes, titres, listes ; sinon texte en ligne. */
+  function pageText(key) {
+    var i = key.indexOf("."), o = PG.pages && PG.pages[key.slice(0, i)];
+    return o ? o[key.slice(i + 1)] : undefined;
+  }
+  function applyTexts() {
+    $$("[data-text]").forEach(function (el) {
+      var v = pageText(el.getAttribute("data-text"));
+      if (v === undefined || v === null) return;          // garde le texte par défaut
+      if (String(v).trim() === "") { el.hidden = true; return; }
+      el.innerHTML = el.getAttribute("data-md") === "block" ? md(v) : mdInline(v);
+    });
+    $$("[data-list]").forEach(function (el) {
+      var v = pageText(el.getAttribute("data-list"));
+      if (!Array.isArray(v)) return;
+      el.innerHTML = v.filter(Boolean).map(function (x) { return '<span class="chip" style="font-size:.95rem;padding:8px 16px">' + mdInline(x) + "</span>"; }).join("");
+    });
+    // Titre de l'onglet et description (SEO) personnalisés
+    var seoT = pageText(PAGE + ".seo_titre"), seoD = pageText(PAGE + ".seo_description");
+    if (seoT) document.title = seoT;
+    if (seoD) { var m = document.querySelector('meta[name="description"]'); if (m) m.setAttribute("content", seoD); }
+  }
+
   function start() {
+    if (!showPh) document.documentElement.classList.add("no-ph");
+    applyTexts();
     buildHeader();
     buildFooter();
     buildDialogs();
