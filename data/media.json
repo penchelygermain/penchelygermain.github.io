@@ -4,28 +4,34 @@
       "id": "m1",
       "type": "image",
       "category": "agriculture",
-      "src": "assets/images/mediatheque/exemple-1.svg",
+      "src": "/assets/uploads/46a472c9-c6f0-424b-a5d1-afc5faeca9c6.jpeg",
+      "youtube": "",
       "alt": "Exemple — photo de terrain",
       "caption": "Exemple — Visite de terrain (remplacez par votre photo)",
-      "placeholder": true
+      "placeholder": true,
+      "draft": false
     },
     {
       "id": "m2",
       "type": "image",
       "category": "leadership",
       "src": "assets/images/mediatheque/exemple-2.svg",
+      "youtube": "",
       "alt": "Exemple — réunion Toastmasters",
       "caption": "Exemple — Réunion de club Toastmasters",
-      "placeholder": true
+      "placeholder": true,
+      "draft": false
     },
     {
       "id": "m3",
       "type": "image",
       "category": "education",
       "src": "assets/images/mediatheque/exemple-3.svg",
+      "youtube": "",
       "alt": "Exemple — session de formation",
       "caption": "Exemple — Session de formation",
-      "placeholder": true
+      "placeholder": true,
+      "draft": false
     },
     {
       "id": "m4",
@@ -35,25 +41,30 @@
       "youtube": "",
       "alt": "Exemple — discours",
       "caption": "Exemple — Discours (ajoutez l'identifiant YouTube)",
-      "placeholder": true
+      "placeholder": true,
+      "draft": false
     },
     {
       "id": "m5",
       "type": "image",
       "category": "events",
       "src": "assets/images/mediatheque/exemple-5.svg",
+      "youtube": "",
       "alt": "Exemple — affiche d'événement",
       "caption": "Exemple — Affiche d'événement",
-      "placeholder": true
+      "placeholder": true,
+      "draft": false
     },
     {
       "id": "m6",
       "type": "image",
       "category": "projects",
       "src": "assets/images/mediatheque/exemple-6.svg",
+      "youtube": "",
       "alt": "Exemple — projet",
       "caption": "Exemple — Projet POLE GEO-HAGRI",
-      "placeholder": true
+      "placeholder": true,
+      "draft": false
     }
   ]
 }
