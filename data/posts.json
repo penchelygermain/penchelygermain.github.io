@@ -1,17 +1,18 @@
 {
   "posts": [
     {
-      "slug": "bienvenue",
+      "slug": "Bienvenue",
       "title": "Bienvenue : cinq métiers, un même fil conducteur",
       "date": "2026-09-29",
       "category": "Education",
-      "image": "assets/images/blog/bienvenue.svg",
+      "image": "/assets/uploads/940c161b-c83d-476b-aca1-31b47fe14e0b.jpeg",
       "summary": "Pourquoi l'agronomie, la formation, la traduction, le leadership et la création de contenu forment un seul et même parcours.",
       "tags": [
         "parcours",
         "impact"
       ],
-      "body": "On me demande souvent comment un agronome en vient à traduire des documents, animer des clubs de prise de parole ou produire des vidéos. La réponse tient en une idée : **transformer les connaissances en compétences, en projets et en impact.**\n\n## Cinq dimensions d'un même parcours\n\n- **L'agronomie** me donne la connaissance du terrain et des systèmes agricoles.\n- **La formation** me permet de transmettre ce savoir et de développer des compétences.\n- **La traduction** fait circuler ce savoir entre les langues et les cultures.\n- **La communication et le leadership** servent à mobiliser et à fédérer.\n- **La création de contenu** transforme le savoir en ressources accessibles à tous.\n\n> Semer le savoir, pour une agriculture durable.\n\nC'est cette conviction qui m'a conduit à créer [POLE GEO-HAGRI](pole-geo-hagri.html). Sur ce blog, je partagerai des réflexions sur l'agriculture durable, l'éducation, le leadership et le numérique."
+      "body": "On me demande souvent comment un agronome en vient à traduire des documents, animer des clubs de prise de parole ou produire des vidéos. La réponse tient en une idée : **transformer les connaissances en compétences, en projets et en impact.**\n\n## Cinq dimensions d'un même parcours\n\n- **L'agronomie** me donne la connaissance du terrain et des systèmes agricoles.\n- **La formation** me permet de transmettre ce savoir et de développer des compétences.\n- **La traduction** fait circuler ce savoir entre les langues et les cultures.\n- **La communication et le leadership** servent à mobiliser et à fédérer.\n- **La création de contenu** transforme le savoir en ressources accessibles à tous.\n\n> Semer le savoir, pour une agriculture durable.\n\nC'est cette conviction qui m'a conduit à créer [POLE GEO-HAGRI](pole-geo-hagri.html). Sur ce site, il y a des formations et réflexions sur l'agriculture durable, le leadership et le numérique.",
+      "draft": false
     }
   ]
 }
